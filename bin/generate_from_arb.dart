@@ -138,7 +138,8 @@ main(List<String> args) {
 loadData(String filename, Map<String, List<Map>> messagesByLocale,
     MessageGeneration generation) {
   var file = File(filename);
-  var src = file.readAsStringSync();
+  var src = file.readAsStringSync(encoding: Encoding.getByName('utf16'));
+
   var data = jsonDecoder.decode(src);
   var locale = data["@@locale"] ?? data["_locale"];
   if (locale == null) {
